@@ -4,9 +4,6 @@
 
 <?php
 	function forwarded_ip() {
-		$server = array(
-				'HTTP_X_FORWARDED_FOR' => '123.123.123.123'
-		);
 		$keys = array(
 			'HTTP_X_FORWARDED_FOR',
 			'HTTP_X_FORWARDED',
@@ -17,19 +14,17 @@
 		);
 
 		foreach($keys as $key) {
-			if(isset($server[$key])) {
-				$ip_array = explode(',', $server[$key]);
-				foreach($ip_array as $ip) {
+			if(isset($_SERVER[$key])) {
+				$ip_array = explode(',', $_SERVER);
 					$ip = trim($ip);
 					if(validate_ip($ip)) {
 						return $ip;
 					}
-
 				}
 			}
-		}
 		return '';
-	}
+		}
+
 
 function validate_ip($ip) {
 	if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) === false) {
