@@ -1,8 +1,12 @@
+<link type="text/css" rel="stylesheet" href="css/style.css">
 
 <!--	//returns first forwarded IP match it finds-->
 
 <?php
 	function forwarded_ip() {
+		$server = array(
+				'HTTP_X_FORWARDED_FOR' => '123.123.123.123'
+		);
 		$keys = array(
 			'HTTP_X_FORWARDED_FOR',
 			'HTTP_X_FORWARDED',
@@ -13,8 +17,8 @@
 		);
 
 		foreach($keys as $key) {
-			if(isset($_SERVER[$key])) {
-				$ip_array = explode(',', $_SERVER[$key]);
+			if(isset($server[$key])) {
+				$ip_array = explode(',', $server[$key]);
 				foreach($ip_array as $ip) {
 					$ip = trim($ip);
 					if(validate_ip($ip)) {
@@ -37,11 +41,25 @@ function validate_ip($ip) {
 $remote_ip = $_SERVER['REMOTE_ADDR'];
 $forwarded_ip = forwarded_ip();
 ?>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>What is my IP</title>
+	</head>
+	<body>
+		<div id="main-content">
+			<h1>What Is My IP?</h1>
+		<h3>The request came from:</h3>
+		 <h2><?php echo($_SERVER['REMOTE_ADDR']); ?></h2>
+			<br/>
+		<br/>
 
-Your IP address is: <?php echo($_SERVER['REMOTE_ADDR']); ?><br/>
-	<br/>
-	<?php if($forwarded_ip != '') {?>
-	Forwarded For: <?php echo $forwarded_ip; ?><br/>
-	<br/>
-<?php } ?>
+		<?php if($forwarded_ip != '') {?>
+			<h3> The request was forwarded for:</h3>
+				<h2><?php echo $forwarded_ip; ?></h2>
 
+		<?php } ?>
+		</div>
+	</body>
+</html>

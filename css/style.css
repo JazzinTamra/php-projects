@@ -1,0 +1,31 @@
+body {
+	background-color: lightsteelblue;
+	align-content: center;
+	font-family: "Leelawadee", arial, sans-serif ;
+}
+
+#main-content {
+	content: 'center';
+	margin-top: 10%;
+}
+
+ h1, h2, h3 {
+	 content: 'center';
+	 text-align: center;
+ }
+
+ h1 {
+	 font-size: 42px;
+	 font-weight: 700;
+ }
+
+ h2 {
+	 font-weight: 100;
+	 margin-top: 2px;
+ }
+
+ h3 {
+	 font-weight: 600;
+	 padding-bottom: 0px;
+	 margin-bottom: 0px;
+ }
