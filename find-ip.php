@@ -1,15 +1,7 @@
-Your IP address is: <?php echo($_SERVER['REMOTE_ADDR']); ?>
-
-<!--//to get all info from the server global-->
-<pre>
-Your server info is:
-	<?php
-	print_r($_SERVER);
-	?>
 
 <!--	//returns first forwarded IP match it finds-->
-	What is my IP proxy:
-	<?php
+
+<?php
 	function forwarded_ip() {
 		$keys = array(
 			'HTTP_X_FORWARDED_FOR',
@@ -29,15 +21,28 @@ Your server info is:
 				}
 			}
 		}
-		return 'None';
+		return '';
 	}
 
-	echo forwarded_ip()
+$remote_ip = $_SERVER['REMOTE_ADDR'];
+$forwarded_ip = forwarded_ip();
+
 	?>
+
+	Your IP address is: <?php echo($_SERVER['REMOTE_ADDR']); ?><br/>
+	<br/>
+	<?php if($forwarded_ip != '') {?>
+	Forwarded For: <?php echo $forwarded_ip; ?><br/>
+	<br/>
+<?php } ?>
+
+
+
+
+<!--//to get all info from the server global-->
+<pre>
+Your server info is:
+<?php
+print_r($_SERVER);
+?>
 </pre>
-<!--/**-->
-<!-- * Created by PhpStorm.-->
-<!-- * User: Tamra-->
-<!-- * Date: 1/19/2016-->
-<!-- * Time: 10:55 AM-->
-<!-- */-->
