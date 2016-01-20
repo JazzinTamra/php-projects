@@ -15,11 +15,13 @@
 
 		foreach($keys as $key) {
 			if(isset($_SERVER[$key])) {
-				$ip_array = explode(',', $_SERVER);
+				$ip_array = explode(',', $_SERVER[$key]);
+				foreach($ip_array as $ip) {
 					$ip = trim($ip);
 					if(validate_ip($ip)) {
 						return $ip;
 					}
+				}
 				}
 			}
 		return '';
