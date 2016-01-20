@@ -16,7 +16,13 @@
 			<p><strong>Remote IP: </strong><?php echo($_SERVER['REMOTE_ADDR']); ?> </p>
 			<p><strong>User Agent: </strong><?php echo($_SERVER['HTTP_USER_AGENT']); ?> </p>
 			<p><strong>Referrer: </strong><?php echo($_SERVER['HTTP_REFERER']); ?> </p>
-			<p><strong>Request Time: </strong><?php echo($_SERVER['REQUEST_TIME']); ?> </p>
+			<p><strong>Request Time: </strong>
+				<?php
+				$date = ($_SERVER['REQUEST_TIME']); //pulls the time from the server
+				$format= 'n/j/Y h:i;s a'; //formats the time
+				echo date($format, $date); // outputs the time
+				 ?> </p>
+
 			<p><strong>Request URI: </strong><?php echo($_SERVER['REQUEST_URI']); ?> </p>
 			<p><strong>Request Method: </strong><?php echo($_SERVER['REQUEST_METHOD']); ?> </p>
 			<p><strong>Query String: </strong><?php echo($_SERVER['QUERY_STRING']); ?> </p>
@@ -24,9 +30,11 @@
 			<p><strong>Accept Charset: </strong><?php echo $_SERVER['HTTP_ACCEPT_CHARSET']; ?> </p>
 			<p><strong>Accept Encoding: </strong><?php echo($_SERVER['HTTP_ACCEPT_ENCODING']); ?> </p>
 			<p><strong>Accept Language: </strong><?php echo($_SERVER['HTTP_ACCEPT_LANGUAGE']); ?> </p>
-			<p><strong>HTTPS?: </strong><?php if(isset($_SERVER['HTTPS'])) {echo "Yes";}
-					else
-					{echo "No";} ?> </p>
+			<p><strong>HTTPS?: </strong>
+				<?php if(isset($_SERVER['HTTPS'])) { //asks if server is using HTTPS
+					echo "Yes";} // if it is Yes is output
+					else {
+						echo "No";} //if it is not set as https No is output ?> </p>
 			<p><strong>Remote Port: </strong><?php echo($_SERVER['REMOTE_PORT']); ?> </p>
 
 
