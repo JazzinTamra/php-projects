@@ -23,11 +23,11 @@ class BrowserDetective {
 	}
 	//need to set detect variable here.
 	public function detectPlatform() {
-		if(preg_match($_SERVER['HTTP_USER_AGENT'],"/windows/i|/win32/i")){
+		if(preg_match("/windows/i|/win32/i", $this->userAgent)){
 			return($this->platform = "Windows");
-		} elseif (preg_match($_SERVER['HTTP_USER_AGENT'],"/linux/i")){
+		} elseif (preg_match("/linux/i", $this->userAgent)){
 			return($this->platform = "Linux");
-		} elseif (preg_match($_SERVER['HTTP_USER_AGENT'],"/macintosh/i"|"/mac/i")) {
+		} elseif (preg_match("/macintosh/i"|"/mac/i", $this->userAgent)) {
 			return ($this->platform = "Mac");
 		}
 
