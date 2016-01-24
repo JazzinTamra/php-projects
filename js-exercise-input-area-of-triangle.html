@@ -16,10 +16,6 @@
 
 <button onclick="myFunction()">Area of my Triangle</button>
 
-
-<p id="demoB">B</p> <p id="demoC">C</p>
-
-<p id="demoP">P after</p>
 <p id="demo"></p>
 
 <script>
@@ -31,15 +27,11 @@
         console.log(typeof b);
         var c = document.getElementById("c").value *1;
         console.log(typeof c);
-        var p = (a + b  + c )/2;
+        var p = (a + b + c )/2;
         console.log(typeof p);
-        document.getElementById("demoA").innerHTML = a;
-        document.getElementById("demoB").innerHTML = b;
-        document.getElementById("demoC").innerHTML = c;
-        document.getElementById("demoP").innerHTML = p;
         var x = Math.sqrt(p* ((p - a)*(p - b)*(p - c)));
-        document.getElementById("demo").innerHTML = x;
         console.log(typeof x);
+        document.getElementById("demo").innerHTML = x;
     }
 </script>
 
