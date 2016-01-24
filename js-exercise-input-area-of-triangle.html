@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 4: Find the area of a triangle where lengths are entered into a form</title>
+</head>
+<body>
+<h1>Find the area of a triangle</h1>
+<p>Enter the length of the 3 sides of your triangle below.</p>
+
+<form action="myForm">
+    <h4>Side 1 <input type="number" id="a" required min=">0" step=".1"></h4><br />
+    Side 2 <input type="number" id="b"><br />
+    Side 3 <input type="number" id="c"><br />
+</form>
+
+<button onclick="myFunction()">Area of my Triangle</button>
+
+
+<p id="demoB">B</p> <p id="demoC">C</p>
+
+<p id="demoP">P after</p>
+<p id="demo"></p>
+
+<script>
+    function myFunction() {
+
+        var a = document.getElementById("a").value *1;
+        console.log(typeof a);
+        var b = document.getElementById("b").value *1;
+        console.log(typeof b);
+        var c = document.getElementById("c").value *1;
+        console.log(typeof c);
+        var p = (a + b  + c )/2;
+        console.log(typeof p);
+        document.getElementById("demoA").innerHTML = a;
+        document.getElementById("demoB").innerHTML = b;
+        document.getElementById("demoC").innerHTML = c;
+        document.getElementById("demoP").innerHTML = p;
+        var x = Math.sqrt(p* ((p - a)*(p - b)*(p - c)));
+        document.getElementById("demo").innerHTML = x;
+        console.log(typeof x);
+    }
+</script>
+
+</body>
+</html>
