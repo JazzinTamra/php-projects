@@ -2,16 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- CSS -->
+
+    <!-- load bootstrap and add some custom css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cerulean/bootstrap.min.css">
+    <style>body { padding-top:50px; }</style>
+    <!-- load angular -->
+    <script src="//code.angularjs.org/1.4.0/angular.js"></script>
+
+    <!-- load ngmessages -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+
+    <!-- load our custom app -->
+    <script src="js/app.js"></script>
+
     <title>Exercise 4: Find the area of a triangle where lengths are entered into a form</title>
 </head>
-<body>
+<body class="container" ng-app="app" ng-controller="MainCtrl as main">
 <h1>Find the area of a triangle</h1>
 <p>Enter the length of the 3 sides of your triangle below.</p>
 
-<form action="myForm">
-    <h4>Side 1 <input type="number" id="a" required min=">0" step=".1"></h4><br />
-    Side 2 <input type="number" id="b"><br />
-    Side 3 <input type="number" id="c"><br />
+<form name="myForm" id="myForm" ng-hide="isEditing">
+<div class="form-inline" ng-class="{ 'has-error' : myForm.side1.$touched && myForm.side1.$invalid}">
+    <label >Side 1</label>
+        <input
+            type=number
+            id="a"
+            name="side1"
+            class="form-control"
+            ng-required="true"
+            ng-min=">0"
+            step=".1">
+    <div class="alert alert-danger"
+         role="alert"
+         ng-message="myForm.side1.$error"
+        ng-if="myForm.side1.$touched"
+        ng-hide="myForm.side1.$valid">
+        <p ng-message="required">A number is required.</p>
+        <p ng-message="min">Your number needs to be greater than 0.</p>
+    </div>
+</div>
+    <br />
+    <h4>Side 2 <input type=number id="b"></h4><br />
+    <h4>Side 3 <input type="number" id="c"></h4><br />
 </form>
 
 <button onclick="myFunction()">Area of my Triangle</button>
