@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<!-- 3. Write a JavaScript program to get the current date. Go to the editor
+		Expected Output :
+		mm-dd-yyyy, mm/dd/yyyy or dd-mm-yyyy, dd/mm/yyyy -->
+		<script type="text/javascript" src="http://www.datejs.com/build/date.js"></script>
+
+		<title>Current Date</title>
+	</head>
+	<body>
+		<h1>Current Date Exercise 3</h1>
+		<p>Current date is (using js date): <strong id="currentDate1"></strong></p>
+		<p>Current mm-dd-yyyy date is: <strong id="mm-dd-yyyy"></strong></p>
+		<p>Current mm/dd/yyyy date is: <strong id="mm/dd/yyyy"></strong></p>
+		<p>Current dd-mm-yyyy date is: <strong id="dd-mm-yyyy"></strong></p>
+		<p>Current dd/mm/yyyy date is: <strong id="dd/mm/yyyy"></strong></p>
+
+		<script>
+			// #3 current date usting js date
+			var d = new Date();
+			document.getElementById("currentDate1").innerHTML = (d.toString("MM-dd-yyyy"));
+		</script>
+
+		<script>
+			var d = new Date();
+			var mm = ("0" + d.getMonth() + 1).slice(-2);
+			var dd = ("0" + d.getDate()).slice(-2);
+
+			var dt = [mm, dd, d.getFullYear()].join("-");
+			document.getElementById("mm-dd-yyyy").innerHTML = dt;
+
+			var dt1 = [mm, dd, d.getFullYear()].join("/");
+			document.getElementById("mm/dd/yyyy").innerHTML = dt1;
+
+			var dt2 = [dd, mm, d.getFullYear()].join("-");
+			document.getElementById("dd-mm-yyyy").innerHTML = dt2;
+
+			var dt3 = [dd, mm, d.getFullYear()].join("/");
+			document.getElementById("dd/mm/yyyy").innerHTML = dt3;
+		</script>
+
+	</body>
+</html>
