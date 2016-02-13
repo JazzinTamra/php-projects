@@ -31,3 +31,18 @@ function reverseArrayMembers($array) {
 $array = ["foo", "bar", "baz"];
 reverseArrayMembers(array_flip($array));
 echo $array[1];
+
+
+//this should work
+
+function reverseArrayMembers($array) {
+    foreach($array as $key => $member) {
+        $array[$key] = strrev($member);
+        //nothing is returned so nothing is transferred below
+    }
+    return($array);
+}
+
+$array = ["foo", "bar", "baz"];
+$array = reverseArrayMembers(array_flip($array));//this is flipping the reference with the variable. 0 cannot be reversed so it looks like it not doing anything
+print_r($array);
