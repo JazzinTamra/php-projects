@@ -38,7 +38,7 @@ echo $array[1];
 function reverseArrayMembers($array) {
     foreach($array as $key => $member) {
         $array[$key] = strrev($member);
-        //nothing is returned so nothing is transferred below
+        //nothing is returned so nothing is transferred below added return($array); below to fix that.
     }
     return($array);
 }
@@ -46,3 +46,55 @@ function reverseArrayMembers($array) {
 $array = ["foo", "bar", "baz"];
 $array = reverseArrayMembers(array_flip($array));//this is flipping the reference with the variable. 0 cannot be reversed so it looks like it not doing anything
 print_r($array);
+
+
+//outputs yay
+<?php
+interface Logger {
+    public function log($message);
+}
+class Foo implements Logger {
+    public function log($message) {
+        echo $message . PHP_EOL;
+    }
+}
+class Bar extends Foo { //this is just a copy of Foo
+    // blank!
+}
+function enhancedLogger(Logger $logger, $message) { //Logger is a type hint
+    echo "<p>";
+    $logger->log($message);
+    echo "</p>";
+}
+
+//implementation
+$bar = new Bar();
+enhancedLogger($bar, "yay");
+//answer
+//<p>yay
+//</p>
+
+//new example
+interface Logger {
+    public function log($message);
+}
+class Foo implements Logger {
+    public function log($message) {
+        echo $message . PHP_EOL;
+    }
+}
+class Bar extends Foo {
+    // blank!
+}
+class Baz {
+    // also blank
+}
+function enhancedLogger(Logger $logger, $message) {
+    echo "<p>";
+    $logger->log($message);
+    echo "</p>";
+}
+$bar = new Bar();
+$baz = new Baz();
+enhancedLogger($bar, "Back Paws for Bernie");
+enhancedLogger($baz, "Meow");

@@ -2,20 +2,17 @@
 <html ng-app="app" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS -->
 
     <!-- load bootstrap and add some custom css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cerulean/bootstrap.min.css">
-    <!-- load angular -->
-    <script src="//code.angularjs.org/1.4.0/angular.js"></script>
 
-    <!-- load ngmessages -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
     <!-- load angular -->
-    <script src="//code.angularjs.org/1.4.0/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 
-    <!-- load ngmessages -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+    <!--&lt;!&ndash; load ng-messages &ndash;&gt;-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>-->
 
     <!-- load our custom app -->
     <script src="js/app.js"></script>
@@ -27,7 +24,7 @@
 <p>Enter the length of the 3 sides of your triangle below.</p>
 
 <form name="myForm" nonvalidate>
-<div class="form-inline" ng-class="{ 'has-error' : myForm.side1.$touched && myForm.side1.$invalid}">
+<div class="form-inline">
     <label >Side 1</label>
         <input
                 title="side1"
@@ -39,14 +36,15 @@
             ng-required="true"
             ng-minlength="0"
             step=".1">
-    <div class="alert alert-danger"
-         role="alert"
-         ng-hide="myForm.side1.$valid"
-         ng-if="myForm.side1.$touched"
-         ng-message="myForm.side1.$error"
-         ng-hide="myForm.side1.$valid">
-        <p ng-message="required">A number is required.</p>
-        <p ng-message="minlength">Your number needs to be greater than 0.</p>
+    <p ng-hide="myForm.side1.$valid && myForm.side1.$untouched">A number above 0 is required</p>
+    <!--<div class="alert alert-danger"-->
+         <!--role="alert"-->
+         <!--ng-hide="myForm.side1.$valid"-->
+         <!--ng-if="myForm.side1.$touched"-->
+         <!--ng-message="myForm.side1.$error"-->
+         <!--ng-hide="myForm.side1.$valid">-->
+        <!--<p ng-message="required">A number is required.</p>-->
+        <!--<p ng-message="minlength">Your number needs to be greater than 0.</p>-->
     </div>
 </div>
     <br />
@@ -58,22 +56,7 @@
 
 <p id="demo"></p>
 
-<script>
-    function myFunction() {
 
-        var a = document.getElementById("a").value *1;
-        console.log(typeof a);
-        var b = document.getElementById("b").value *1;
-        console.log(typeof b);
-        var c = document.getElementById("c").value *1;
-        console.log(typeof c);
-        var p = (a + b + c )/2;
-        console.log(typeof p);
-        var x = Math.sqrt(p* ((p - a)*(p - b)*(p - c)));
-        console.log(typeof x);
-        document.getElementById("demo").innerHTML = x;
-    }
-</script>
 
 </body>
 </html>

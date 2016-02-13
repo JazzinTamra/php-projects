@@ -1,0 +1,36 @@
+/**
+ * Created by Tamra on 1/26/2016.
+ */
+
+
+<p>//used in console to loop through radio buttons to see which is checked
+for(var i = 0; i < methods.length; i++) { //methods = radio buttons
+    if (methods[i].checked == true) {
+        alert(methods[i].value);
+    }
+}
+
+onerror = errorHandler;
+document.writ("Welcome to this website"); //deliberate error
+
+function errorHandler(message, url, line) {
+    out = "Sorry, and error was encountered.\n\n";
+    out
+}
+
+stringVar = prompt("currentDate1"); //dialog box asking for "currentDate1"</p>
+<script>
+    var myObject = {
+        foo: "bar",
+        func: function() {
+            var self = this;
+            console.log("outer func:  this.foo = " + this.foo);
+            console.log("outer func:  self.foo = " + self.foo);
+            (function() {
+                console.log("inner func:  this.foo = " + this.foo);
+                console.log("inner func:  self.foo = " + self.foo);
+            }());
+        }
+    };
+    myObject.func();
+</script>
