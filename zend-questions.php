@@ -98,3 +98,21 @@ $bar = new Bar();
 $baz = new Baz();
 enhancedLogger($bar, "Back Paws for Bernie");
 enhancedLogger($baz, "Meow");
+
+<?php
+$closure = function foo($a, $b, $c) { //closures should not have names remove foo to get 3|2|1
+    echo "$c|$b|$a" . PHP_EOL;
+};
+​
+$closure(1, 2, 3);
+
+//parse error
+//Be prepared for purposeful and subtle syntax errors in Zend questions. Many take the format of:
+//
+//What is the output of the following code?
+//    `// ...code here...`
+//    a) foo
+//b) bar
+//c) baz
+//d) parse error
+//e) fatal error
