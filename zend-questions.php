@@ -152,4 +152,62 @@ Array
 [5] => 1
 )
 
+//Topic 8 Databases This sections questions most closly looks like that you'll find on the exam
+FooSQL Aggregation
+ orderHeader: generic order data
+ product: generic product data
+ m-to-n relationship because Derek's sales are so high :D
+ orderLine: weak entity from m-to-n relationship
+ SELECT orderLineProductId, orderLineOrderHeaderId, orderLineQuantity
+  FROM orderHeader;
+  output: gobs of ids and quantities - not enough for Derek - he needs his sales numbers!
+
+SELECT orderLineProductId, orderLineOrderHeaderId, orderLineQuantity
+FROM orderHeader
+INNER JOIN orderHeader ON orderHeader.orderHeaderId = orderLineOrderHeaderId
+INNER JOIN product ON product.productId = orderLineProductId
+WHERE orderHeaderDate >= "2016-02-27 00:00:00"
+ And orderHeaderDate <= "2016-02-27 23:59:59"
+ output: same useless data as before with a date filer - dull, dull, dull!
+
+SELECT orderLineProductId, orderLineOrderHeaderId, orderLineQuantity
+    SUM(productPrice * orderLineQuantity) AS orderHeaderTotal
+ FROM orderHeader
+INNER JOIN orderHeader ON orderHeader.orderHeaderId = orderLineOrderHeaderId
+INNER JOIN product ON product.productId = orderLineProductId
+WHERE orderHeaderDate >= "2016-02-27 00:00:00"
+And orderHeaderDate <= "2016-02-27 23:59:59"
+ GROUP BY orderLineOrderHeaderId;
+    output: all orders with their totals for the day of 2016-02-27
+
+SELECT SUM(productPrice * orderLineQuantity) AS orderHeaderTotal,
+    SUM(orderHeaderTotal) AS dailyTotal
+    DATE(orderHeaderTotal) AS orderHeaderDay
+FROM orderHeader
+INNER JOIN orderHeader ON orderHeader.orderHeaderId = orderLineOrderHeaderId
+INNER JOIN product ON product.productId = orderLineProductId
+GROUP BY orderHeaderDay
+ output: two columns: dailyTotal with the amount made for orderHeaderDay(per day)
+
+TL;DR; Don't worry Zend doesn't go SQL insane like this
+    However, being able to derive the small parts (one of them) is very useful
+    FFS, this is useful in the real world :D
+Use the data base bc the PDO is the PDO usage when you can don't write these with php
+Transaction similar to a system restore point in Windows
+
+bindParam() vs bindValue()
+
+$answer = 42;
+$query = "INSERT INTO foo(bar, baz) VALUES(:bar, :baz)";
+$statement = $pdo->prepare($query);
+$statement->bindParam(":bar",$answer); //binds the variable by reference
+$answer = 16; //this changes what will be executed from the line above
+$statement->bindParam(":bar", $answer); //this line will
+$statement->execute();
+
+1D 5 does not get NULL
+2A
+3A can't put a param in the select list
+4B begin() makes this a transaction
+5D
 
