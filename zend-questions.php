@@ -211,3 +211,93 @@ $statement->execute();
 4B begin() makes this a transaction
 5D
 
+ARRAYS
+array_push vs $array[]
+    both add elements to the end of an array
+    $array[]="foo' adds to the end of an array using the next available index
+    $numeric = ['foo', 'bar'];
+    $numeric[] = 'baz'; //['foo','bar', 'baz];
+    $associative=["kkeller13=>"ensign", "ethomas"=>"viceroy"];
+    $associative=[]="gkephart";
+    //["kkeller13=>"ensign", "ethomas"=>"viceroy" 0=>"gkephart"]
+
+array_unshift() adds to the beginning not the end as array_push does
+
+array_unshift() vs array_push()
+    classic data structures that George is in live with: Stack and Queue :D
+    array_unshift()/array_shift() lets you have a Stack with an array
+    array_push()/array_pop() lets you have a Queue with an array
+    array_pop(): take from the end of an array
+    array_shift(): take from the beginning of an array
+    TL:DR: Don't use these - use SplStack and SplQueue
+
+Feeling loopy?
+    //numeric array
+    for($i=0; $i<count($array); $i++) {}
+    //associative array
+    foreach($array as $value)
+    //associative array with indexed
+    foreach($array as $index => $value)
+    //run a closure
+    array_walk($array, function() {});
+
+WARNING: PHP7 changed the foreach!
+    //this will break on PHP7 and work on PHP 5.6;
+    foreach($array as $value){
+        $value = $value + 42;
+}
+PHP 5.6 allowed you to modify array values in an array directly
+PHP7 gives you a coy of the value and leaves the array unchanged
+In PHP7, you can overrride this behavior if necessary:
+foreach($array as &$value) {
+    $value=$value +42;
+}
+But is you're doing this, you're doing it wrong - there are better design patterns for this!
+
+The data was in random order because Skyler was feeling out of sorts!
+    sort($array) sorts the array in default order
+    sort() can take a second parameter for different behaviors:
+    SORT_NUMERIC: sort number like strings numerically
+    SORT_STRING: sort number like strings lexicographically ex 12 before 2
+    SORT_FLAG_CASE//
+
+<?php
+$numbers = [1, 10, 11, 13, 2, 21, 22, 24];
+sort($numbers, SORT_STRING);
+print_r($numbers);
+​
+$words = ["foo", "bar", "Baz"];
+sort($words);
+print_r($words);
+sort($words, SORT_FLAG_CASE | SORT_STRING);
+print_r($words);
+
+?>
+//usort is a sort with a closure
+<?php
+$numbers = [1, 10, 11, 13, 2, 21, 22, 24];
+​
+/**
+ * determines whether a number is divisible by 2
+ *
+ * @param int $input integer to test
+ * @returns int number of times the number is divisible by two
+ **/
+function divisibleByTwo(int $input) {
+    if($input % 2 === 0 && $input !== 0) {
+        return(divisibleByTwo($input / 2) + 1);
+    } else {
+        return(0);
+    }
+}
+​
+// now, use a closure to order the array by the number of factors of two
+// imagine using an operator, such as <, the closure does $left < $right
+usort($numbers, function($left, $right) {
+    return(divisibleByTwo($right) - divisibleByTwo($left));
+});
+print_r($numbers);
+?>
+
+
+
