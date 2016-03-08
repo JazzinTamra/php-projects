@@ -133,14 +133,46 @@ firstCat.breed = "Manx";
 firstCat.speak('meow');
 
 //Invoking through call & Apply
-//  Indirect invaction
+//  Indirect invocation
 //  Define the value of this argument
 
+
 var speak = function(what) {
-    console.log(what);
-    console.log(this.love);
+    console.log(what); //gets you meow
+    console.log(this); //gets you the Window
+    console.log(this.love);//purr is the answer. I'm not quite sure why it pulls from below without calling saySomething
 };
+speak("meouff");
 
 var saySomething = {normal: "meow", love: "purr"};
+// call passes a value, Apply an array
 speak.call(saySomething);
 speak.apply(saySomething, ['meouff']);
+
+///THE ARGUMENTS PARAMETER
+// *lIST OF ELEMENTS PASSED
+//  *aN ARRAY LIKE OBJECT
+//  *Numerical index agrument[x]
+//  *we cal get the arguments.length
+//  *We can loop through arguments
+//  *Can't use all array methods like pop push
+
+var plus = function() { //no named function, so this is a function literal
+    var sum =  0;
+    for (var i = arguments.length - 1; i >= 0; i--) { //example of using the arguments parameter
+        sum += arguments[i];
+    };
+    return sum;
+};
+
+console.log(plus(2,2,2,3,2,3,4));
+
+//THE return STATEMENT
+return sum;
+//  *   Returns an express i.e. the results of the function
+//  *  Sort of optional without it a function returns undefined
+//  *  Can only be used in the function body
+//  *  Return sends something back to the caller. It can be a variable or assigned to a variable
+//  *  Stops execution of the function
+//  *
+
